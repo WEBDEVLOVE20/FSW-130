@@ -199,3 +199,117 @@ export default Header
 
 
 
+Context Practice:
+
+//(https://reactjs.org/docs/forms.html#controlled-components)
+//(https://scrimba.com/p/p7P5Hd/cW8Jdfy)
+
+**App.js**
+
+
+import React from "react"
+
+import Header from "./Header"
+import {UserContextConsumer} from "./userContext"
+
+class App extends React.Component {
+    state = {
+        newUsername: ""
+    }
+    
+    handleChange = (e) => {
+        const {name, value} = e.target
+        this.setState({[name]: value})
+    }
+    
+    render() {    
+        return (
+            <div>
+                <Header />
+                    <UserContextConsumer>
+                        {({username, changeUsername}) => (
+                            <main>  
+                                <p className="main">No new notifications, {username}! 🎉</p>
+                                <input
+                                    type="text"
+                                    name="newUsername"
+                                    placeholder="New username"
+                                    value={this.state.newUsername}
+                                    onChange={this.handleChange}
+                                />
+                                <button onClick={() => changeUsername(this.state.newUsername)}>Change Username</button>
+                            </main> 
+                        )}
+                    </UserContextConsumer>
+            </div>
+        )
+    }
+}
+
+export default App
+
+
+**userContext.js**
+
+import React from "react"
+
+const {Provider, Consumer} = React.createContext()
+
+class UserContextProvider extends React.Component {
+    state = {
+        username: "bob123"
+    }
+    
+    changeUsername = (username) => {
+        this.setState({username})
+    }
+    
+    render() {
+        const {username} = this.state
+        return (
+            <Provider value={{username, changeUsername: this.changeUsername}}>
+                {this.props.children}
+            </Provider>
+        )
+    }
+}
+
+export {UserContextProvider, Consumer as UserContextConsumer}
+
+**Header.js**
+
+import React from "react"
+import {UserContextConsumer} from "./userContext"
+
+function Header() {
+    return (
+        <header>
+            <UserContextConsumer>
+                {({username}) => (
+                    <p>Welcome, {username}!</p>
+                )}
+            </UserContextConsumer>
+        </header>
+    )
+}
+
+export default Header
+
+
+**index.js**
+
+import React from "react"
+import ReactDOM from "react-dom"
+
+import App from "./App"
+import {UserContextProvider} from "./userContext"
+
+ReactDOM.render(
+    <UserContextProvider>
+        <App />
+    </UserContextProvider>, 
+    document.getElementById("root")
+)
+
+
+
