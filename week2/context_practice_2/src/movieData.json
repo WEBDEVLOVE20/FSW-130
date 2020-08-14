@@ -2,46 +2,41 @@
     {
         "id": 1,
         "title": "Men In Black",
-        "genre": "comedy"
+        "rated": "PG-13"
     },
     {
         "id": 2,
         "title": "Fight Club",
-        "genre": "comedy"
-    },
-    {
-        "id": 3,
-        "title": "Harry Potter and the Chamber of Secrets",
-        "genre": "comedy"
+        "rated": "R"
     },
     {
         "id": 4,
         "title": "Push",
-        "genre": "comedy"
+        "rated": "PG-13"
     },
     {
         "id": 5,
         "title": "Sully",
-        "genre": "comedy"
+        "rated": "PG"
     },
     {
         "id": 6,
         "title": "Back to the Future",
-        "genre": "comedy"
+        "rated": "PG-13"
     },
     {
         "id": 7,
         "title": "The Lion King",
-        "genre": "comedy"
+        "rated": "G"
     },
     {
         "id": 8,
-        "title": "The Secret",
-        "genre": "comedy"
+        "title": "Halloween",
+        "rated": "R"
     },
     {
         "id": 9,
         "title": "Jumanji",
-        "genre": "comedy"
+        "rated": "PG"
     }
 ]

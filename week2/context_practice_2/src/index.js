@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import {MovieContextProvider} from "./movieContext";
+import {MovieContextProvider} from "./provider/movieContext";
 
 
 ReactDOM.render(

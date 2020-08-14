@@ -1,5 +1,7 @@
 import React from "react";
-import movieData from "./movieData.json"
+import movieData from "../movieData.json"
+
+
 const {Provider, Consumer} = React.createContext();
 
 class MovieContextProvider extends React.Component {
@@ -8,18 +10,21 @@ class MovieContextProvider extends React.Component {
         movies: movieData
     }
     
-    changeMovies = (movies) => {
-        this.setState({movies})
+    addMovies = (e, movie) => {
+        e.preventDefault()
+        this.setState({
+            movies: [...this.state.movies, movie]
+            
+        })
     }
     
     render() {
-        
-        const {movies} = this.state;
-        const moviesArr = movies.map(movie => <div key={movie}>{movie.title}</div>)
 
         return (
             <div>
-            <Provider value={{moviesArr, changeMovies: this.changeMovies}}>
+            <Provider value=
+                {{...this.state,
+                addMovies: this.addMovies}}>
                 {this.props.children}
             </Provider>
             </div>

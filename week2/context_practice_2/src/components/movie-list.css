@@ -1,0 +1,22 @@
+.title {
+    margin-top: 15px;
+}
+
+.rated {
+    color: #89141e;
+}
+
+button {
+    background-color: #89141e;
+    color: white;
+    padding: 4px;
+}
+
+input {
+    padding: 3px;
+}
+
+h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
