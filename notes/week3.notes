@@ -1,0 +1,219 @@
+Plain JS Redux - Overview:
+
+const redux = require("redux")
+const initialState = {
+    count: 0
+}
+
+function reducer(state=initialState, action) {
+    switch(action.type) {
+        case "INCREMENT":
+            return {
+                count: state.count + 1
+            }
+        case "DECREMENT":
+            return {
+                count: state.count - 1
+            }
+        default:
+            return state
+    }
+}
+
+const store = redux.createStore(reducer)
+
+store.subscribe(() => {
+    console.log(store.getState())
+})
+
+store.dispatch({type: "INCREMENT"})
+store.dispatch({type: "INCREMENT"})
+store.dispatch({type: "DECREMENT"})
+
+
+
+
+
+
+
+
+Plain JS Redux - Actions:
+
+const redux = require("redux")
+
+const action = {
+    type: "INCREMENT" //must be cap or sep with _ like ONE_COUNT, is a string descripting the change you want to make
+}
+
+
+
+Plain JS Redux - Action Creators:
+
+const redux = require("redux")
+
+function increment() {
+    return {
+        type: "INCREMENT"
+    }
+}
+
+console.log(increment())
+
+
+
+
+
+
+Plain JS Redux - Reducer:
+
+const redux = require("redux")
+
+function increment() {
+    return {
+        type: "INCREMENT"
+    }
+}
+
+function decrement() {
+    return {
+        type: "DECREMENT"
+    }
+}
+
+function reducer(oldState = {count: 0}, action) {
+    // return new state based on the incoming action.type
+    switch(action.type) {
+        case "INCREMENT":
+            return {
+                count: oldState.count + 1
+            }
+        case "DECREMENT":
+            return {
+                count: oldState.count - 1
+            }
+        default:
+            return oldState
+    }
+}
+
+
+Plain JS Redux - Creating the Store:
+
+
+const redux = require("redux")
+
+function increment() {
+    return {
+        type: "INCREMENT"
+    }
+}
+
+function decrement() {
+    return {
+        type: "DECREMENT"
+    }
+}
+
+function reducer(state = {count: 0}, action) {
+    // return new state based on the incoming action.type
+    switch(action.type) {
+        case "INCREMENT":
+            return {
+                count: state.count + 1
+            }
+        case "DECREMENT":
+            return {
+                count: state.count - 1
+            }
+        default:
+            return state
+    }
+}
+
+const store = redux.createStore(reducer)
+console.log(store) //{dispatch: dispatch(action), subscribe: subscribe(listener), getState: getState(), replaceReducer: replaceReducer(nextReducer)}
+
+
+
+
+
+
+Plain JS Redux- subscribe and getState:
+
+const redux = require("redux")
+
+function increment() {
+    return {
+        type: "INCREMENT"
+    }
+}
+
+function decrement() {
+    return {
+        type: "DECREMENT"
+    }
+}
+
+function reducer(state = {count: 0}, action) {
+    // return new state based on the incoming action.type
+    switch(action.type) {
+        case "INCREMENT":
+            return {
+                count: state.count + 1
+            }
+        case "DECREMENT":
+            return {
+                count: state.count - 1
+            }
+        default:
+            return state
+    }
+}
+
+const store = redux.createStore(reducer)
+store.subscribe(() => {
+    console.log(store.getState())
+})
+
+
+
+
+Plain JS Redux - dispatch:
+
+const redux = require("redux")
+
+function increment() {
+    return {
+        type: "INCREMENT"
+    }
+}
+
+function decrement() {
+    return {
+        type: "DECREMENT"
+    }
+}
+
+function reducer(state = {count: 0}, action) {
+    // return new state based on the incoming action.type
+    switch(action.type) {
+        case "INCREMENT":
+            return {
+                count: state.count + 1
+            }
+        case "DECREMENT":
+            return {
+                count: state.count - 1
+            }
+        default:
+            return state
+    }
+}
+
+const store = redux.createStore(reducer)
+store.subscribe(() => {
+    console.log(store.getState())
+})
+
+store.dispatch(increment())
+store.dispatch(decrement())
