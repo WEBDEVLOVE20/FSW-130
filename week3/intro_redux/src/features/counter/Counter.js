@@ -1,5 +1,5 @@
 // import React, { useState } from 'react';
-import React from 'react'
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   stop,
@@ -14,7 +14,7 @@ import {
 const formattedSeconds = (sec) =>
   Math.floor(sec / 60) +
     ':' +
-  ('0' + sec % 60).slice(-2)
+  ('0' + sec % 60).slice(-2);
 
 export function Counter() {
   const count = useSelector(selectCount);
@@ -24,7 +24,7 @@ export function Counter() {
   const Button = (props) =>
   <button 
   type="button" {...props} 
-  className={"btn " + props.className } 
+  className={"btn " + props.className}
   />;
 
   return (

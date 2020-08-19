@@ -10,10 +10,8 @@ export const counterSlice = createSlice({
     laps: []
 },
   reducers: {
-
-    stop: (state) => {
+    stop: () => {
       clearInterval(incrementers);
-      state.lastClearedIncrementer = incrementers;
     },
     reset: (state) => {
       clearInterval(incrementers);
