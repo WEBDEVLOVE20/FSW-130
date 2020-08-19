@@ -1,3 +1,7 @@
+
+Template: npx create-react-app my-app --template redux
+
+
 Redux in React - Setup & Practice:
 
 **index.js**

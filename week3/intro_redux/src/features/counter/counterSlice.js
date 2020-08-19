@@ -1,42 +1,45 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
+let incrementers = null;
+
 export const counterSlice = createSlice({
   name: 'counter',
-  initialState: {
-    value: 0,
-  },
+  initialState: { 
+    secondsElapsed: 0, 
+    laps: []
+},
   reducers: {
-    increment: state => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1;
+
+    stop: (state) => {
+      clearInterval(incrementers);
+      state.lastClearedIncrementer = incrementers;
     },
-    decrement: state => {
-      state.value -= 1;
+    reset: (state) => {
+      clearInterval(incrementers);
+      state.secondsElapsed = 0;
+      state.laps = [];
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    log: (state) => {
+      state.laps = state.laps.concat([state.secondsElapsed]);
+    },
+    start: (state, action) => {
+      state.secondsElapsed += action.payload;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { start, stop, reset, log } = counterSlice.actions;
 
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
-export const incrementAsync = amount => dispatch => {
-  setTimeout(() => {
-    dispatch(incrementByAmount(amount));
+
+export const startAsync = amount => dispatch => {
+  incrementers = setInterval(() => {
+    dispatch(start(amount));
   }, 1000);
 };
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectCount = state => state.counter.value;
+export const selectCount = state => state.counter.secondsElapsed;
+export const lap = state => state.counter.laps;
+
 
 export default counterSlice.reducer;

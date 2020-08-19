@@ -1,62 +1,49 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
+  stop,
+  reset,
+  log,
   selectCount,
+  lap, 
+  startAsync
 } from './counterSlice';
-import styles from './Counter.module.css';
+
+
+const formattedSeconds = (sec) =>
+  Math.floor(sec / 60) +
+    ':' +
+  ('0' + sec % 60).slice(-2)
 
 export function Counter() {
   const count = useSelector(selectCount);
+  const logging = useSelector(lap);
   const dispatch = useDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
+
+  const Button = (props) =>
+  <button 
+  type="button" {...props} 
+  className={"btn " + props.className } 
+  />;
 
   return (
     <div>
-      <div className={styles.row}>
-        <button
-          className={styles.button}
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          +
-        </button>
-        <span className={styles.value}>{count}</span>
-        <button
-          className={styles.button}
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          -
-        </button>
-      </div>
-      <div className={styles.row}>
-        <input
-          className={styles.textbox}
-          aria-label="Set increment amount"
-          value={incrementAmount}
-          onChange={e => setIncrementAmount(e.target.value)}
-        />
-        <button
-          className={styles.button}
-          onClick={() =>
-            dispatch(incrementByAmount(Number(incrementAmount) || 0))
+      <div className="stopwatch">
+        <h1 className="stopwatch-timer">{formattedSeconds(count)}</h1>
+          <Button className="start-btn" onClick={() => dispatch(startAsync(1))}>start</Button>
+          <Button className="stop-btn" onClick={() => dispatch(stop())}>stop</Button>
+          <Button onClick={() => dispatch(reset())}>reset</Button>
+          <Button onClick={() => dispatch(log())}>lap</Button>
+        <ul className="stopwatch-laps">
+          { logging.map((laps, i) =>
+              <li key={i} className="stopwatch-lap"><strong>{i + 1}</strong>/ {formattedSeconds(laps)}</li>)
           }
-        >
-          Add Amount
-        </button>
-        <button
-          className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}
-        >
-          Add Async
-        </button>
+        </ul>
       </div>
     </div>
   );
 }
+
 
 export default Counter;
