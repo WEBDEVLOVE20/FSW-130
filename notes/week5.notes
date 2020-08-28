@@ -107,3 +107,162 @@ store.subscribe(() => {
 
 store.dispatch(setYouTubeTitle("Learn Redux"))
 store.dispatch(upvoteVideo())
+
+
+
+
+
+
+
+
+Plain JS Redux - combineReducers Part 2:
+
+
+**index.js**
+
+import store from "./redux"
+import {changeCount} from "./redux/count"
+
+store.dispatch(changeCount(42))
+
+# redux folder
+
+**index.js**
+
+const redux = require("redux")
+const {combineReducers, createStore} = redux
+import countReducer from "./count"
+import favoriteThingsReducer from "./favoriteThings"
+import youTubeVideoReducer from "./youTubeVideo"
+
+const rootReducer = combineReducers({
+    count: countReducer,
+    favoriteThings: favoriteThingsReducer,
+    youTubeVideo: youTubeVideoReducer
+})
+
+const store = createStore(rootReducer)
+store.subscribe(() => {
+    console.log(store.getState())
+})
+export default store
+
+
+**count.js**
+
+export function changeCount(amount = 1) {
+    return {
+        type: "CHANGE_COUNT",
+        payload: amount
+    }
+}
+
+export default function countReducer(count = 0, action) {
+    switch(action.type) {
+        case "CHANGE_COUNT":
+            return count + action.payload
+        default:
+            return count
+    }
+}
+
+
+***favoriteThings.js**
+
+export function addFavoriteThing(thing) {
+    return {
+        type: "ADD_FAVORITE_THING",
+        payload: thing
+    }
+}
+
+export function removeFavoriteThing(thing) {
+    return {
+        type: "REMOVE_FAVORITE_THING",
+        payload: thing
+    }
+}
+
+export default function favoriteThingsReducer(favoriteThings = [], action) {
+    switch(action.type) {
+        case "ADD_FAVORITE_THING":
+            return [...favoriteThings, action.payload]
+        case "REMOVE_FAVORITE_THING": {            
+            const updatedArr = favoriteThings.filter(thing => thing.toLowerCase() !== action.payload.toLowerCase())
+            return updatedArr
+        }
+        default:
+            return favoriteThings
+    }
+}
+
+
+
+**youTubeVideo.js**
+
+export function setYouTubeTitle(title) {
+    return {
+        type: "SET_YOUTUBE_TITLE",
+        payload: title
+    }
+}
+
+export function incrementViewCount() {
+    return {
+        type: "INCREMENT_VIEW_COUNT"
+    }
+}
+
+export function upvoteVideo() {
+    return {
+        type: "UPVOTE_VIDEO"
+    }
+}
+
+export function downvoteVideo() {
+    return {
+        type: "DOWNVOTE_VIDEO"
+    }
+}
+
+const initialState = {
+    title: "",
+    viewCount: 0,
+    votes: {
+        up: 0,
+        down: 0
+    }
+}
+
+export default function youTubeVideoReducer(youTubeVideo = initialState, action) {
+    switch(action.type) {
+        case "INCREMENT_VIEW_COUNT":
+            return {
+                ...youTubeVideo,
+                viewCount: youTubeVideo.viewCount + 1
+            }
+        case "SET_YOUTUBE_TITLE":
+            return {
+                ...youTubeVideo,
+                title: action.payload
+            }
+        case "UPVOTE_VIDEO":
+            return {
+                ...youTubeVideo,
+                votes: {
+                    ...youTubeVideo.votes,
+                    up: youTubeVideo.votes.up + 1
+                }
+            }
+        case "DOWNVOTE_VIDEO":
+            return {
+                ...youTubeVideo,
+                votes: {
+                    ...youTubeVideo.votes,
+                    down: youTubeVideo.votes.down + 1
+                }
+            }
+        default:
+            return youTubeVideo
+    }
+}
