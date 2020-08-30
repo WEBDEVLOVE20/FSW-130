@@ -1,4 +1,3 @@
-
 export function addMovie(movie) {
     return {
         type: "ADD_MOVIE",
@@ -28,7 +27,7 @@ export default function moviesReducer(movies = [], action) {
             return updatedArr
         }
         case "GET_ALL_MOVIES":
-            return [...movies]
+            return movies
         default:
             return movies
     }

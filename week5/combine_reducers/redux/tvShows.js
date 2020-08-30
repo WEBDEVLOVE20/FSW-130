@@ -1,4 +1,3 @@
-
 export function addTvShow(tvShow) {
     return {
         type: "ADD_TV_SHOW",
@@ -28,7 +27,7 @@ export default function tvShowReducer(tvShows = [], action) {
             return updatedArr
         }
         case "GET_ALL_TV_SHOWS": {
-            return [...tvShows]
+            return tvShows
         }
         default:
             return tvShows
