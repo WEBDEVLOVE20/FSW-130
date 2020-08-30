@@ -13,6 +13,12 @@ export function removeMovie(movie) {
     }
 }
 
+export function getAllMovies() {
+    return {
+        type: "GET_ALL_MOVIES"
+    }
+}
+
 export default function moviesReducer(movies = [], action) {
     switch(action.type) {
         case "ADD_MOVIE":
@@ -21,6 +27,8 @@ export default function moviesReducer(movies = [], action) {
             const updatedArr = movies.filter(movie => movie.toLowerCase() !== action.payload.toLowerCase())
             return updatedArr
         }
+        case "GET_ALL_MOVIES":
+            return [...movies]
         default:
             return movies
     }

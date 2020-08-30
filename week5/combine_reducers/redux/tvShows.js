@@ -1,15 +1,21 @@
 
-export function addTvShow(movie) {
+export function addTvShow(tvShow) {
     return {
         type: "ADD_TV_SHOW",
-        payload: movie
+        payload: tvShow
     }
 }
 
-export function removeTvShow(movie) {
+export function removeTvShow(tvShow) {
     return {
         type: "REMOVE_TV_SHOW",
-        payload: movie
+        payload: tvShow
+    }
+}
+
+export function getAllTvShows() {
+    return {
+        type: "GET_ALL_TV_SHOWS"
     }
 }
 
@@ -18,8 +24,11 @@ export default function tvShowReducer(tvShows = [], action) {
         case "ADD_TV_SHOW":
             return [...tvShows, action.payload]
         case "REMOVE_TV_SHOW": {            
-            const updatedArr = tvShows.filter(movie => movie.toLowerCase() !== action.payload.toLowerCase())
+            const updatedArr = tvShows.filter(tvShow => tvShow.toLowerCase() !== action.payload.toLowerCase())
             return updatedArr
+        }
+        case "GET_ALL_TV_SHOWS": {
+            return [...tvShows]
         }
         default:
             return tvShows
