@@ -1,13 +1,18 @@
 import React from 'react';
-import { Movie } from './features/media/Movie';
-import { TvShow } from './features/media/TvShow';
+import { Switch, Route } from 'react-router-dom'
+import { Movie } from './features/components/Movie';
+import { TvShow } from './features/components/TvShow';
+import { Navbar } from './features/components/Navbar';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Movie/>
-      <TvShow/>
+      <Navbar />
+      <Switch>
+        <Route exact path='/' component={Movie} />
+        <Route path='/tvshows' component={TvShow} />
+      </Switch>
     </div>
   );
 }

@@ -8,10 +8,10 @@ export const mediaSlice = createSlice({
   },
   reducers: {
     addMovies: (state, action) => {
-      state.movies += action.payload;
+      state.movies = [...state.movies, action.payload];
     },
     addTvShows: (state, action) => {
-      state.tvShows += action.payload;
+      state.tvShows = [...state.tvShows, action.payload];
     },
   },
 });
