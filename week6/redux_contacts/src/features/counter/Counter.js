@@ -27,6 +27,7 @@ export function Counter() {
   const movieList = users.map((user, id) =>
     <div key={id}>{user}</div>
   );
+  console.log(movieList)
 
   return (
     <div>
