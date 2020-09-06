@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './App.css'
+import './App.css';
 import * as contactAction from './actions/contactAction';
 
 class App extends Component {
@@ -60,7 +60,6 @@ class App extends Component {
   }
 
   render() {
-
     return(
       <div className="container">
         <h1>Redux Contacts</h1>
