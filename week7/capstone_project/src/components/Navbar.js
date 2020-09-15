@@ -8,12 +8,13 @@ export const Navbar = () => {
                 <div className="container">
                 <div className="inner-content">
                 <div className="brand">
-                    <Link to="/">WatchList</Link>
+                    
+                    <img className="movie" src="https://img.icons8.com/wired/64/000000/movie-projector.png" alt="movie projector"/>
                 </div>
 
                 <ul className="nav-links">
                     <li>
-                    <Link to="/">Watch List</Link>
+                    <Link to="/">WatchList</Link>
                     </li>
 
                     <li>

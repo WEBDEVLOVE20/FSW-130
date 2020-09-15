@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap");
 
 :root {
-  --primary: #032541;
-  --secondary: #21d07a;
+  --primary: #49393B;
+  --secondary: #ADFCF9;
   --white: #fff;
 }
 
@@ -10,6 +10,7 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   padding: 0;
   margin: 0;
+  background-color: #07090F;
 }
 
 .container {
@@ -58,7 +59,7 @@ body {
 }
 
 .btn:hover {
-  background-color: #1aa762;
+  background-color: #89A894;
   opacity: 1;
   cursor: pointer;
 }
@@ -82,6 +83,10 @@ header .inner-content {
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
+}
+
+.movie {
+  color: white;
 }
 
 header a {
